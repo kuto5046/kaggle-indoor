@@ -1,0 +1,25 @@
+seaborn==0.10.1
+
+# 画像
+opencv-python==4.4.0.40
+
+# 音声
+# librosa==0.7.2
+# SoundFile==0.10.2
+# noisereduce==1.1.0
+
+# DL
+pytorch-lightning==1.2.3
+Albumentations==0.4.6
+resnest==0.0.5
+efficientnet-pytorch==0.6.3
+
+# ML
+kaggle==1.5.6
+optuna==2.6.0
+wandb==0.10.22
+
+# other
+pathlib==1.0.1
+typing==3.7.4.3
+# Jupyter_contrib_nbextensions
