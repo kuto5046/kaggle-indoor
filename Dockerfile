@@ -41,10 +41,7 @@ rm -f Anaconda3-2020.11-Linux-x86_64.sh
 ENV PATH /opt/anaconda3/bin:$PATH
 # ENV SLACK_WEBHOOK_URL=$SLACK_WEBHOOK_URL
 
-# make workspace
-RUN mkdir /work
 COPY ./requirements.txt /
-
 # install common python packages
 RUN pip install --upgrade pip setuptools && \
     pip install -r /requirements.txt
@@ -56,9 +53,6 @@ EXPOSE 8888
 EXPOSE 5000
 EXPOSE 6006
 
-# set working directory
-WORKDIR /work
-
 # add user
 ARG DOCKER_UID=1000
 ARG DOCKER_USER=kuzira
@@ -68,19 +62,23 @@ RUN useradd -m --uid ${DOCKER_UID} --groups sudo ${DOCKER_USER} \
 
 # kaggle setup
 # for root
-RUN mkdir ~/.kaggle
-COPY ./kaggle.json /root/.kaggle/
-RUN chmod 600 /root/.kaggle/kaggle.json
-
-RUN git clone https://github.com/kuto5046/dotfiles.git
-RUN bash dotfiles/.bin/install.sh 
+# RUN mkdir ~/.kaggle
+# COPY ./kaggle.json /root/.kaggle/
+# RUN chmod 600 /root/.kaggle/kaggle.json
+# RUN git clone https://github.com/kuto5046/dotfiles.git
+# RUN bash dotfiles/.bin/install.sh 
 
 # for user
 RUN mkdir /home/${DOCKER_USER}/.kaggle
 COPY ./kaggle.json /home/${DOCKER_USER}/.kaggle/
-RUN chmod 600 /home/${DOCKER_USER}/.kaggle/kaggle.json
+# set working directory
+RUN mkdir /home/${DOCKER_USER}/work
+WORKDIR /home/${DOCKER_USER}/work
+# 本当はよくないがkaggle cliがuserで使えないので600 -> 666
+RUN chmod 666 /home/${DOCKER_USER}/.kaggle/kaggle.json
 
-# # switch user
+# switch user
 USER ${DOCKER_USER}
 
-RUN sudo bash dotfiles/.bin/install.sh 
+RUN git clone https://github.com/kuto5046/dotfiles.git /home/${DOCKER_USER}/dotfiles
+RUN bash /home/${DOCKER_USER}/dotfiles/.bin/install.sh 
