@@ -2,3 +2,7 @@
 /input/
 /.vscode/
 kaggle.json
+/notebook/
+/exp/*/wandb/
+/exp/*/oof.csv
+*.pyc
