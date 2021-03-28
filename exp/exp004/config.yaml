@@ -1,0 +1,43 @@
+globals:
+  seed: 1996
+  max_epochs: 200
+  n_splits: 5
+  use_folds:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+  debug: False
+  exp_message: dataset_v1
+  notes: kuto_wifi_dataset_v1を使って学習。CVは補正したx,yで算出
+
+
+loss:
+  name: MSELoss
+  params:
+
+optimizer:
+  name: Adam
+  params:
+    lr: 0.001
+
+scheduler:
+  name: ReduceLROnPlateau
+  params:
+    factor: 0.1
+    patience: 3
+
+loader:
+  train:
+    batch_size: 512
+    shuffle: True
+    num_workers: 4
+  valid:
+    batch_size: 512
+    shuffle: False
+    num_workers: 4
+  test:
+    batch_size: 512
+    shuffle: False
+    num_workers: 4
