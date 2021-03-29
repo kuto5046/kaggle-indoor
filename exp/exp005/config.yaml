@@ -4,14 +4,11 @@ globals:
   n_splits: 5
   use_folds:
     - 0
-    - 1
-    - 2
     - 3
-    - 4
   debug: False
   exp_message: dataset_v1_wifi80
-  notes: wifiのデータを20から80に変更
-
+  notes: 80の壁突破用のmodelを保存
+  model_save: True
 
 loss:
   name: MSELoss
