@@ -29,24 +29,31 @@ RUN apt-get -y update && apt-get install -y \
     libsndfile1 \
     zsh \
     xonsh \
-    neovim
+    neovim \
+    nodejs \
+    npm \
+    curl
 
-# download anaconda package and install anaconda
-WORKDIR /opt
-RUN wget https://repo.continuum.io/archive/Anaconda3-2020.11-Linux-x86_64.sh && \
-sh /opt/Anaconda3-2020.11-Linux-x86_64.sh -b -p /opt/anaconda3 && \
-rm -f Anaconda3-2020.11-Linux-x86_64.sh
+RUN apt-get install -y \
+    python3.8  \
+    python3.8-dev \
+    python3-pip \
+    python3-ipdb
+
+# node js を最新Verにする
+RUN npm -y install n -g && \
+    n stable && \
+    apt purge -y nodejs npm
 
 # set path
-ENV PATH /opt/anaconda3/bin:$PATH
-# ENV SLACK_WEBHOOK_URL=$SLACK_WEBHOOK_URL
+ENV PATH /usr/bin:$PATH
 
-COPY ./requirements.txt /
 # install common python packages
-RUN pip install --upgrade pip setuptools && \
-    pip install -r /requirements.txt
+COPY ./requirements.txt /
+RUN pip3 install --upgrade pip && \
+    pip3 install -r /requirements.txt
 # https://qiita.com/Hiroaki-K4/items/c1be8adba18b9f0b4cef
-RUN pip install torch==1.7.0+cu110 torchvision==0.8.1+cu110 -f https://download.pytorch.org/whl/torch_stable.html
+RUN pip3 install torch==1.7.0+cu110 torchvision==0.8.1+cu110 -f https://download.pytorch.org/whl/torch_stable.html
 
 # jupyter用にportを開放
 EXPOSE 8888
@@ -55,18 +62,10 @@ EXPOSE 6006
 
 # add user
 ARG DOCKER_UID=1000
-ARG DOCKER_USER=kuzira
+ARG DOCKER_USER=user
 ARG DOCKER_PASSWORD=kuzira
 RUN useradd -m --uid ${DOCKER_UID} --groups sudo ${DOCKER_USER} \
   && echo ${DOCKER_USER}:${DOCKER_PASSWORD} | chpasswd
-
-# kaggle setup
-# for root
-# RUN mkdir ~/.kaggle
-# COPY ./kaggle.json /root/.kaggle/
-# RUN chmod 600 /root/.kaggle/kaggle.json
-# RUN git clone https://github.com/kuto5046/dotfiles.git
-# RUN bash dotfiles/.bin/install.sh 
 
 # for user
 RUN mkdir /home/${DOCKER_USER}/.kaggle
@@ -81,4 +80,5 @@ RUN chmod 666 /home/${DOCKER_USER}/.kaggle/kaggle.json
 USER ${DOCKER_USER}
 
 RUN git clone https://github.com/kuto5046/dotfiles.git /home/${DOCKER_USER}/dotfiles
-RUN bash /home/${DOCKER_USER}/dotfiles/.bin/install.sh 
+RUN bash /home/${DOCKER_USER}/dotfiles/.bin/install.sh }
+
