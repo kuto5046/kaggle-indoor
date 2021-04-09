@@ -12,3 +12,5 @@ kaggle.json
 *.ckpt
 *.png
 *.json
+
+/tmp/

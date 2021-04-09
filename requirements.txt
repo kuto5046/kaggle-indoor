@@ -39,4 +39,4 @@ ipywidgets==7.6.3
 
 # jupyter
 lckr-jupyterlab-variableinspector==3.0.6
-# Jupyter_contrib_nbextensions
+jupyterlab_code_formatter==1.4.10
