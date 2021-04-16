@@ -33,10 +33,8 @@ lightgbm==3.1.1
 # other
 pathlib==1.0.1
 typing==3.7.4.3
-jupyterlab==3.0.12
-jupyterlab-git==0.23.3
+# jupyterlab==3.0.12
+# jupyterlab-git==0.23.3
 ipywidgets==7.6.3
 
 # jupyter
-lckr-jupyterlab-variableinspector==3.0.6
-jupyterlab_code_formatter==1.4.10

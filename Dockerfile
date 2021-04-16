@@ -83,7 +83,20 @@ RUN git clone https://github.com/kuto5046/dotfiles.git /home/${DOCKER_USER}/dotf
 RUN bash /home/${DOCKER_USER}/dotfiles/.bin/install.sh }
 
 # jupyter lab
-RUN jupyter labextension install base16-nord
-RUN jupyter labextension install @jupyterlab/toc
-RUN jupyter labextension install @ryantam626/jupyterlab_code_formatter
-RUN jupyter serverextension enable --py jupyterlab_code_formatter
+ENV PATH /home/user/.local/bin:$PATH
+# RUN wget -q -O - https://linux.kite.com/dls/linux/current
+RUN pip install \
+    jupyterlab
+    # 'jupyterlab-kite>=2.0.2' \
+    # jupyterlab-git \ 
+    # lckr-jupyterlab-variableinspector \
+    # black \
+    # jupyterlab_code_formatter
+    # jupyterlab-lsp
+
+RUN jupyter labextension install \
+    @axlair/jupyterlab_vim \
+    @arbennett/base16-nord \
+    @jupyterlab/toc
+    # @kiteco/jupyterlab-kite
+    # @ryantam626/jupyterlab_code_formatter 
