@@ -1,0 +1,46 @@
+globals:
+  seed: 1996
+  max_epochs: 200
+  n_splits: 5
+  use_folds:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+  debug: False
+  exp_message: 2kaido_v1_magn
+  notes: 2kaidoさんのdataset+magn cost min
+  only_pred: True
+  model_save: False
+  pretrained: True
+  pretrained_path: ../../model/exp015/
+
+loss:
+  name: MSELoss
+  params:
+
+optimizer:
+  name: Adam
+  params:
+    lr: 0.01
+
+scheduler:
+  name: ReduceLROnPlateau
+  params:
+    factor: 0.1
+    patience: 3
+
+loader:
+  train:
+    batch_size: 512
+    shuffle: True
+    num_workers: 4
+  valid:
+    batch_size: 512
+    shuffle: False
+    num_workers: 4
+  test:
+    batch_size: 512
+    shuffle: False
+    num_workers: 4
