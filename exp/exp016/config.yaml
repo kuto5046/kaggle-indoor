@@ -10,10 +10,10 @@ globals:
     - 4
   debug: False
   exp_message: 2kaido_v1_magn
-  notes: 2kaidoさんのdataset+magn cost min
-  only_pred: True
-  model_save: False
-  pretrained: True
+  notes: 2kaidoさんのdataset+magn cost min最小数を10->7に変更
+  only_pred: False
+  model_save: True
+  pretrained: False
   pretrained_path: ../../model/exp015/
 
 loss:
