@@ -324,6 +324,38 @@ def compute_headings(ahrs_datas):
         headings[i, :] = ahrs_data[0], around_z
     return headings
 
+"""
+# https://www.researchgate.net/profile/Wonho-Kang/publication/273180204_SmartPDR_Smartphone-Based_Pedestrian_Dead_Reckoning_for_Indoor_Localization/links/5716271008aed2dd5cfd6223/SmartPDR-Smartphone-Based-Pedestrian-Dead-Reckoning-for-Indoor-Localization.pdf
+def compute_headings(ahrs_datas, gyro_datas, magn_datas):
+    thr_h_cor = 5  # threshold heading value for correlation
+    thr_h_mag = 2  # threshold heading value for magnetic
+
+    headings = np.zeros((np.size(ahrs_datas, 0), 2))
+    for i in np.arange(0, np.size(ahrs_datas, 0)):
+        # rotate vector
+        ahrs_data = ahrs_datas[i, :]
+        rot_mat = get_rotation_matrix_from_vector(ahrs_data[1:])
+        azimuth, pitch, roll = get_orientation(rot_mat)
+        around_z = (-azimuth) % (2 * np.pi)
+        headings[i, :] = ahrs_data[0], around_z
+
+        
+
+        # case1 (use prev & mag & gyro)
+        if (h_cor_delta <= thr_h_cor) & (h_mag_delta <= thr_h_mag):
+            heading = w_pmg*(w_prev*h_prev + w_mag*h_mag + w_gyro*h_gyro)
+        # case2 (use mag gyro)
+        elif (h_cor_delta <= thr_h_cor) & (h_mag_delta > thr_h_mag):
+            heading = w_mg*(w_mag*h_mag + w_gyro*h_gyro)
+        # case3 (use prev)
+        elif (h_cor_delta > thr_h_cor) & (h_mag_delta <= thr_h_mag):
+            heading = h_prev
+        # case4 (use prev & gyro)
+        else:
+            heading = w_pg(w_prev*h_prev + w_gyro*h_gyro)
+
+    return headings
+"""
 
 def compute_step_heading(step_timestamps, headings):
     step_headings = np.zeros((len(step_timestamps), 2))
@@ -350,7 +382,7 @@ def compute_rel_positions(stride_lengths, step_headings):
     return rel_positions
 
 
-def compute_step_positions(acce_datas, ahrs_datas, posi_datas):
+def compute_step_positions(acce_datas, ahrs_datas, posi_datas, magn_datas):
     step_timestamps, step_indexs, step_acce_max_mins = compute_steps(acce_datas)
     headings = compute_headings(ahrs_datas)
     stride_lengths = compute_stride_length(step_acce_max_mins)
