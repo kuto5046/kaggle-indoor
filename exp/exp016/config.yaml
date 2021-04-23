@@ -28,7 +28,7 @@ optimizer:
 scheduler:
   name: ReduceLROnPlateau
   params:
-    factor: 0.1
+    factor: 0.9
     patience: 3
 
 loader:
