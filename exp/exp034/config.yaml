@@ -1,0 +1,46 @@
+globals:
+  seed: 1996
+  max_epochs: 200
+  n_splits: 5
+  use_folds:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+  debug: False
+  exp_message: remove40s
+  notes: 40m以上のズレのあるデータは使用しない
+  only_pred: False
+  model_save: True
+  pretrained: False
+  pretrained_path: ../../model/exp032/
+
+loss:
+  name: WeightedMSELoss
+  params:
+
+optimizer:
+  name: Adam
+  params:
+    lr: 0.01
+
+scheduler:
+  name: ReduceLROnPlateau
+  params:
+    factor: 0.9
+    patience: 3
+
+loader:
+  train:
+    batch_size: 512
+    shuffle: True
+    num_workers: 4
+  valid:
+    batch_size: 512
+    shuffle: False
+    num_workers: 4
+  test:
+    batch_size: 512
+    shuffle: False
+    num_workers: 4
