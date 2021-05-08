@@ -5,7 +5,9 @@ kaggle.json
 
 /exp/*/wandb/
 /exp/*/oof.csv
+/exp/*/oof_pp.csv
 /exp/*/*fold*.csv
+/exp/*/oof*.ipynb
 *.pyc
 /img/
 *.html
