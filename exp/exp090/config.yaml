@@ -9,8 +9,8 @@ globals:
     - 3
     - 4
   debug: False
-  exp_message: mod_exp075
-  notes: snap to gridの閾値がなかったのでそれをexp075に追加
+  exp_message: baseline
+  notes: auto waypointなしbaseline
   only_pred: True
   model_save: False
   pretrained: True

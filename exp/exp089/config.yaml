@@ -9,8 +9,8 @@ globals:
     - 3
     - 4
   debug: False
-  exp_message: mod_exp075
-  notes: snap to gridの閾値がなかったのでそれをexp075に追加
+  exp_message: extragrid_d8_15_l3
+  notes: extra gridのlength_m=3 8<distance<15 20mデータ
   only_pred: True
   model_save: False
   pretrained: True
