@@ -9,8 +9,8 @@ globals:
     - 3
     - 4
   debug: False
-  exp_message: binary_thr
-  notes: train gridは閾値あり/extra gridはなし
+  exp_message: optim_grid
+  notes: 最適化したgrid exp090 3< d < 30
   only_pred: True
   model_save: False
   pretrained: True
