@@ -109,9 +109,9 @@ We automatically generated 3 pattern extra grids instead of hand-labeling grids 
 ## ensemble
 We did stacking and extra grid ensemble. We did post processing with 4 different patterns. Then, did ensemble by weighted average.
 
-4 pattern is here.
-① snap to grid’s threshold=None / sparse extra grid
-② snap to grid’s threshold=None / dense  extra grid
-③ snap to grid’s threshold=None / edge  extra grid
-④ snap to grid’s threshold=5 / only train grid
+4 pattern is here.  
+① snap to grid’s threshold=None / sparse extra grid  
+② snap to grid’s threshold=None / dense  extra grid  
+③ snap to grid’s threshold=None / edge  extra grid  
+④ snap to grid’s threshold=5 / only train grid  
 
