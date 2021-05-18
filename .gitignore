@@ -9,10 +9,10 @@ kaggle.json
 /exp/*/*fold*.csv
 /exp/*/oof*.ipynb
 *.pyc
-/img/
+# /img/
 *.html
 *.ckpt
-*.png
+# *.png
 *.json
 
 /tmp/
