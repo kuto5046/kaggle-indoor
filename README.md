@@ -5,7 +5,9 @@ https://www.kaggle.com/c/indoor-location-navigation
 
 
 ## logs
-https://www.notion.so/Indoor-d96fb5ad316b4d1bbd5f6d9e37897c55
+[Notion](https://www.notion.so/Indoor-d96fb5ad316b4d1bbd5f6d9e37897c55)
+
+[振り返り記事](https://kutohonn.hatenablog.com/entry/2021/05/20/221728?_ga=2.125275530.1468884617.1621516651-1762009094.1615375543)
 
 ## result
 
